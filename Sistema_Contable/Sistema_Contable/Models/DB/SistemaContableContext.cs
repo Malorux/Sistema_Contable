@@ -291,7 +291,9 @@ namespace Sistema_Contable.Models.DB
 
             modelBuilder.Entity<VcuentasContable>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey( );
+
+                entity.HasKey(e => e.IdCuenta);
 
                 entity.ToView("VCuentasContable");
 

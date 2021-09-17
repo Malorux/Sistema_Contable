@@ -9,17 +9,18 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
     xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
     xmlns:local1="clr-namespace:Sistema_Contable.ViewModels"
+    xmlns:local2="clr-namespace:Sistema_Contable.Models.DB"
     
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
     Title="PContabilidad"
-      
+    
       >
 
     <Page.Resources>
 
-        <!--<CollectionViewSource x:Key="fCuentasNivel_ResultViewSource" d:DesignSource="{d:DesignInstance {x:Type Modelo:FCuentasNivel_Result}, CreateList=True}"/>
-        <CollectionViewSource x:Key="fCuentasNivel_ResultViewSource1" d:DesignSource="{d:DesignInstance {x:Type Modelo:CatalogoCuenta}, CreateList=True}"/>-->
+        <CollectionViewSource x:Key="categoryViewSource" d:DesignSource="{d:DesignInstance {x:Type local2:VcuentasContable}, CreateList=True}"/>
+        
 
 
         <Style TargetType="{x:Type TabItem}" >
@@ -128,49 +129,6 @@
 
         </Style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <Storyboard x:Key="Open">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MuestraCuenta">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
@@ -185,7 +143,7 @@
         <RoutedUICommand x:Key="EditarCuentaCommand" Text="Delete Order"/>
 
 
-        <Style x:Key="sdsdfsdf" TargetType="{x:Type Button}">
+        <Style x:Key="PruebaButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#373737" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="15" />
@@ -236,17 +194,18 @@
             <TabItem Header="Catálogo de cuenta" >
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="MuestraCuenta" Background="Transparent" Content="Mostrar Catalogo" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OnSeeTheDotNetsButtonClick"/>
-                    <mah:ProgressRing x:Name="Progreso" Visibility="Hidden" Foreground="Blue" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox Grid.Row="0" x:Name="ComboCuenta" Visibility="Collapsed" HorizontalAlignment="Center" Width="100" Height="20"/>
 
-                    <DataGrid x:Name = "CuentasNivelDataGrid" Style="{StaticResource MahApps.Styles.DataGrid}" Visibility = "Hidden" Margin = "0 10 0 0" SelectionUnit = "FullRow" SelectionMode = "Single" AutoGenerateColumns = "False" CanUserAddRows = "false" IsEnabled = "True" IsReadOnly="True" EnableRowVirtualization = "True" Width = "auto" RowDetailsVisibilityMode = "VisibleWhenSelected" >
+                    <Button Grid.Row="1" x:Name="MuestraCuenta" Style="{StaticResource PruebaButton}" Content="Mostrar Catalogo" Height="40" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Click="OnSeeTheDotNetsButtonClick"/>
+                    <mah:ProgressRing Grid.Row="1" x:Name="Progreso" Visibility="Hidden" Foreground="Blue" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <DataGrid Grid.Row="1" x:Name = "CuentasNivelDataGrid" ItemsSource="{Binding Source={StaticResource categoryViewSource}}" Style="{StaticResource MahApps.Styles.DataGrid}" Visibility = "Hidden" Margin = "0 10 0 0" SelectionUnit = "FullRow" SelectionMode = "Single" AutoGenerateColumns = "False" CanUserAddRows = "false" IsEnabled = "True" IsReadOnly="True" EnableRowVirtualization = "True" Width = "auto" RowDetailsVisibilityMode = "VisibleWhenSelected" >
                         <DataGrid.Columns>
-                            
-                            <DataGridTemplateColumn Header="Acciones">
+
+                            <!--<DataGridTemplateColumn Header="Acciones">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate >
                                         <StackPanel Orientation = "Horizontal" Margin = "0">
@@ -262,20 +221,15 @@
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            </DataGridTemplateColumn>-->
 
 
-                            <DataGridTextColumn x:Name = "ID_CuentaColumn" Binding = "{Binding ID_Cuenta}" Header = "ID Cuenta" Width = "SizeToHeader">
-
-                            </DataGridTextColumn>
-
-                            <DataGridTextColumn x:Name = "ID_PadreColumn" Binding = "{Binding ID_Padre}" Header = "ID Cuenta Padre" Width = "SizeToHeader" />
-
+                            <DataGridTextColumn x:Name = "ID_CuentaColumn" Binding = "{Binding IdCuenta}" Header = "ID Cuenta" Width = "SizeToHeader"/>
+                            <DataGridTextColumn x:Name = "ID_PadreColumn" Binding = "{Binding IdPadre}" Header = "ID Cuenta Padre" Width = "SizeToHeader" />
                             <DataGridTextColumn x:Name = "NombreCuentaColumn" Binding = "{Binding NombreCuentaC}" Header = "Nombre" Width = "400" />
-
                             <DataGridTextColumn x:Name = "NivelColumn" Binding = "{Binding NivelC}" Header = "Nivel" Width = "SizeToHeader" />
-
                             <DataGridTextColumn x:Name = "AuxiliarColumn" Binding = "{Binding Auxiliar}" Header = "Codigo Cuenta" Width = "SizeToHeader" />
+
                         </DataGrid.Columns>
 
                         <DataGrid.ContextMenu >
@@ -298,8 +252,6 @@
                             </ContextMenu>
 
                         </DataGrid.ContextMenu>
-
-
                     </DataGrid>
 
 
@@ -320,8 +272,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button Content="AgregaDetalle" Grid.Row="0" Background="Black" FontSize="20" Click="Button_Click" VerticalAlignment="Center" Height="33" Width="155" HorizontalAlignment="Center" Margin="367,10,262,7"/>
-
+                    
                     <!--<ListView x:Name="ListaDetall" Grid.Row="1" DataContextChanged="ListaDetall_DataContextChanged">
                         <ListView.View>
                             <GridView >
