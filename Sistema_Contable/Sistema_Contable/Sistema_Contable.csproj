@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Models\DB\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.4.7" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
