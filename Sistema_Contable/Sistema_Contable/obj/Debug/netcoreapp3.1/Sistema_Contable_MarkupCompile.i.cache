@@ -4,16 +4,21 @@
 winexe
 C#
 .cs
-C:\Users\Mauro\Desktop\Mas Proyectos de C#\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\
+C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Proyecto\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\
 Sistema_Contable
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Mauro\Desktop\Mas Proyectos de C#\Sistema_Contable\Sistema_Contable\Sistema_Contable\App.xaml
+C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Proyecto\Sistema_Contable\Sistema_Contable\Sistema_Contable\App.xaml
 31877202442
 
+<<<<<<< HEAD
 201029447381
 218682636165
+=======
+101878640752
+218790186214
+>>>>>>> 632a0fbe4d57495e5cf554d3272680c8d07fa824
 Assets\icons.xaml;MainWindow.xaml;View\PContabilidad.xaml;
 
 False
