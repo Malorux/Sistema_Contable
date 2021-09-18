@@ -11,9 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using System.Linq;
-
 using Sistema_Contable.Models.DB;
 using System.Collections.ObjectModel;
 
@@ -26,10 +24,9 @@ namespace Sistema_Contable.View
         public PContabilidad()
         {
             InitializeComponent();
-            CuentasNivel = ((CollectionViewSource)(FindResource("categoryViewSource")));
-            
-
+            CuentasNivel = ((CollectionViewSource)(FindResource("categoryViewSource")));          
         }
+
         private async void OnSeeTheDotNetsButtonClick(object sender, RoutedEventArgs e)
         {
             IEnumerable<VcuentasContable> listaCuenta = new ObservableCollection<VcuentasContable>();

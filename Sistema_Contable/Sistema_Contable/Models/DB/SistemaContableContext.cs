@@ -23,8 +23,7 @@ namespace Sistema_Contable.Models.DB
         public virtual DbSet<CatalogosEstado> CatalogosEstados { get; set; }
         public virtual DbSet<Clasificacion> Clasificacions { get; set; }
         public virtual DbSet<EstadosFinanciero> EstadosFinancieros { get; set; }
-        public virtual DbSet<Persona> Personas { get; set; }
-        public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<VcuentasContable> VcuentasContables { get; set; }
 
@@ -32,7 +31,7 @@ namespace Sistema_Contable.Models.DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost; Database=SistemaContable; Trusted_Connection=True;");
             }
         }
@@ -47,9 +46,7 @@ namespace Sistema_Contable.Models.DB
 
                 entity.ToTable("AsientoContable");
 
-                entity.Property(e => e.IdAsiento)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Asiento");
+                entity.Property(e => e.IdAsiento).HasColumnName("ID_Asiento");
 
                 entity.Property(e => e.Descripcion)
                     .IsRequired()
@@ -77,9 +74,7 @@ namespace Sistema_Contable.Models.DB
 
                 entity.ToTable("AsientoDetalle");
 
-                entity.Property(e => e.IdAsientoDetalle)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_AsientoDetalle");
+                entity.Property(e => e.IdAsientoDetalle).HasColumnName("ID_AsientoDetalle");
 
                 entity.Property(e => e.Debe).HasColumnType("money");
 
@@ -191,9 +186,7 @@ namespace Sistema_Contable.Models.DB
             {
                 entity.HasKey(e => e.IdEstadoFinanciero);
 
-                entity.Property(e => e.IdEstadoFinanciero)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_EstadoFinanciero");
+                entity.Property(e => e.IdEstadoFinanciero).HasColumnName("ID_EstadoFinanciero");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -201,24 +194,52 @@ namespace Sistema_Contable.Models.DB
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Persona>(entity =>
+            modelBuilder.Entity<Role>(entity =>
             {
-                entity.HasKey(e => e.IdPersona);
+                entity.HasKey(e => e.IdRol)
+                    .HasName("PK__Roles__3214EC07A640A438");
 
-                entity.ToTable("Persona");
+                entity.Property(e => e.IdRol).HasColumnName("Id_Rol");
 
-                entity.Property(e => e.IdPersona)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_Persona");
+                entity.Property(e => e.NombreRol)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+                entity.HasKey(e => e.IdUsuario)
+                    .HasName("PK__Usuario__DE4431C5F5B53F4B");
+
+                entity.ToTable("Usuario");
+
+                entity.HasIndex(e => e.Correo, "UQ__Usuario__60695A196CE67073")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Usuario1, "UQ__Usuario__E3237CF7FBE65A15")
+                    .IsUnique();
+
+                entity.Property(e => e.IdUsuario).HasColumnName("ID_Usuario");
+
+                entity.Property(e => e.Clave)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Correo)
                     .IsRequired()
-                    .HasMaxLength(60)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.FechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.IdRol).HasColumnName("ID_Rol");
 
                 entity.Property(e => e.PrimerApellido)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PrimerNombre)
                     .IsRequired()
@@ -229,71 +250,26 @@ namespace Sistema_Contable.Models.DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SegundoNombre).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<TipoUsuario>(entity =>
-            {
-                entity.HasKey(e => e.IdTipoUsuario);
-
-                entity.ToTable("TipoUsuario");
-
-                entity.Property(e => e.IdTipoUsuario)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_TipoUsuario");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Usuario>(entity =>
-            {
-                entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuario__DE4431C555586D3D");
-
-                entity.ToTable("Usuario");
-
-                entity.HasIndex(e => e.NombreUsuario, "UQ__Usuario__6B0F5AE033F69E28")
-                    .IsUnique();
-
-                entity.Property(e => e.IdUsuario)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID_Usuario");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.IdTipoUsuario).HasColumnName("ID_TipoUsuario");
-
-                entity.Property(e => e.NombreUsuario)
-                    .IsRequired()
+                entity.Property(e => e.SegundoNombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdTipoUsuarioNavigation)
+                entity.Property(e => e.Usuario1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("Usuario");
+
+                entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.IdTipoUsuario)
+                    .HasForeignKey(d => d.IdRol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuario_TipoUsuario");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithOne(p => p.Usuario)
-                    .HasForeignKey<Usuario>(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuario_Persona");
+                    .HasConstraintName("FK_Usuario_Roles");
             });
 
             modelBuilder.Entity<VcuentasContable>(entity =>
             {
-                //entity.HasNoKey( );
-
-                entity.HasKey(e => e.IdCuenta);
+                entity.HasNoKey();
 
                 entity.ToView("VCuentasContable");
 

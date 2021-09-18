@@ -5,15 +5,16 @@ using System.Collections.Generic;
 
 namespace Sistema_Contable.Models.DB
 {
-    public partial class TipoUsuario
+    public partial class Role
     {
-        public TipoUsuario()
+        public Role()
         {
             Usuarios = new HashSet<Usuario>();
         }
 
-        public int IdTipoUsuario { get; set; }
-        public string Nombre { get; set; }
+        public int IdRol { get; set; }
+        public string NombreRol { get; set; }
+        public bool Activo { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
