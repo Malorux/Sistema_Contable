@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\CuentaEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\PContabilidad.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,6 +19,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CuentaEdit.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PContabilidad.xaml">

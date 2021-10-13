@@ -15,8 +15,6 @@ namespace Sistema_Contable.Models.DB
         public int IdAsiento { get; set; }
         public int IdUsuario { get; set; }
         public string Descripcion { get; set; }
-        public decimal TotalDebe { get; set; }
-        public decimal TotalHaber { get; set; }
         public DateTime FechaRegistro { get; set; }
 
         public virtual Usuario IdUsuarioNavigation { get; set; }

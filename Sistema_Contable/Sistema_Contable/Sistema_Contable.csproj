@@ -14,10 +14,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\DB\" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="19.2.0.62" />
+    <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="19.2.0.62" />
   </ItemGroup>
 
 </Project>

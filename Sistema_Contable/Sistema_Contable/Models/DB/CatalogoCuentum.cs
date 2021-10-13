@@ -23,6 +23,7 @@ namespace Sistema_Contable.Models.DB
         public DateTime FechaCreacion { get; set; }
         public DateTime? FechaModificacion { get; set; }
         public bool Estado { get; set; }
+        public bool Filtro { get; set; }
 
         public virtual Clasificacion IdClasificacionNavigation { get; set; }
         public virtual CatalogoCuentum IdPadreNavigation { get; set; }

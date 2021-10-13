@@ -482,6 +482,82 @@
           "Microsoft.NETCore.Targets": "1.1.3"
         }
       },
+      "Syncfusion.Data.WPF/19.2.0.62": {
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.Data.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
+      "Syncfusion.Licensing/19.2.0.62": {
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "19.2.0.62",
+            "fileVersion": "19.2.0.62"
+          }
+        }
+      },
+      "Syncfusion.SfBusyIndicator.WPF/19.2.0.62": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.2.0.62"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.SfBusyIndicator.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
+      "Syncfusion.SfGrid.WPF/19.2.0.62": {
+        "dependencies": {
+          "Syncfusion.Data.WPF": "19.2.0.62",
+          "Syncfusion.Licensing": "19.2.0.62",
+          "Syncfusion.Shared.WPF": "19.2.0.62"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.SfGrid.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
+      "Syncfusion.SfGridCommon.WPF/19.2.0.62": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.2.0.62"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.SfGridCommon.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
+      "Syncfusion.SfTreeView.WPF/19.2.0.62": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.2.0.62",
+          "Syncfusion.SfBusyIndicator.WPF": "19.2.0.62",
+          "Syncfusion.SfGridCommon.WPF": "19.2.0.62",
+          "Syncfusion.Shared.WPF": "19.2.0.62"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.SfTreeView.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
+      "Syncfusion.Shared.WPF/19.2.0.62": {
+        "dependencies": {
+          "Syncfusion.Licensing": "19.2.0.62"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.Shared.WPF.dll": {
+            "assemblyVersion": "19.2310.0.62",
+            "fileVersion": "19.2310.0.62"
+          }
+        }
+      },
       "System.Collections/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1690,6 +1766,55 @@
       "sha512": "sha512-c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
       "path": "runtime.native.system/4.3.0",
       "hashPath": "runtime.native.system.4.3.0.nupkg.sha512"
+    },
+    "Syncfusion.Data.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-og7SjUZyrbgN1BFhJgl5bvxGzCsSlqD7GZTdeN8ZnZTUPuqaGYKYWeghgxi+h55VeryHRbEXPFn0frc/E16Z4w==",
+      "path": "syncfusion.data.wpf/19.2.0.62",
+      "hashPath": "syncfusion.data.wpf.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-usYaKBxMoBfliqvNM/KbyYDNRDZ8MHShdgDX8p9GzYjmdnR/UPgKc7nIeVXgwcHru9wSXs7q+abE5zqgsoytpA==",
+      "path": "syncfusion.licensing/19.2.0.62",
+      "hashPath": "syncfusion.licensing.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.SfBusyIndicator.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Vefvg0iqqbc2CbCyplfXCCKoeb5YjQk1UTqVyEsMMbXu2a1B5sQzo8Jzj82jLsUJvsSV2fW3zpCsOwSemKS9dw==",
+      "path": "syncfusion.sfbusyindicator.wpf/19.2.0.62",
+      "hashPath": "syncfusion.sfbusyindicator.wpf.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.SfGrid.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TkHoa5osQAVBXNyt0gjYxBu00APlScIM6cdLES4p8YdbC4IXdrmkSvieP0V9NAmYHysBltgJuTmWuR0HJyueHg==",
+      "path": "syncfusion.sfgrid.wpf/19.2.0.62",
+      "hashPath": "syncfusion.sfgrid.wpf.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.SfGridCommon.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yZvP0wx+vMJKQ7Dk7sc3Q9MPRJrZHB1VI/R26qdhQm3PNyTW33/T4DsZuEZ+7bQqadXzzDs6rXZiVSyWLBYGPg==",
+      "path": "syncfusion.sfgridcommon.wpf/19.2.0.62",
+      "hashPath": "syncfusion.sfgridcommon.wpf.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.SfTreeView.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7TOTNT3x8ugnF+YhqTBNkI0j9J2dV8FeD37w28VN9EAlNXI4F6lKzEKb4dfF/+s0jWro7T200+ksOgf+SOkVTg==",
+      "path": "syncfusion.sftreeview.wpf/19.2.0.62",
+      "hashPath": "syncfusion.sftreeview.wpf.19.2.0.62.nupkg.sha512"
+    },
+    "Syncfusion.Shared.WPF/19.2.0.62": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VHw7lcIHMGFCDovCABH6Nu8+/++Aj2cNP6YO2ZtINjJeXNoItjuO9Y3xeu1YjapTuLtoJbX320ZZ3+/BqaWvbA==",
+      "path": "syncfusion.shared.wpf/19.2.0.62",
+      "hashPath": "syncfusion.shared.wpf.19.2.0.62.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",

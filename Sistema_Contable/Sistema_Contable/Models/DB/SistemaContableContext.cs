@@ -17,6 +17,7 @@ namespace Sistema_Contable.Models.DB
         {
         }
 
+        public virtual DbSet<ArboldeCuentum> ArboldeCuenta { get; set; }
         public virtual DbSet<AsientoContable> AsientoContables { get; set; }
         public virtual DbSet<AsientoDetalle> AsientoDetalles { get; set; }
         public virtual DbSet<CatalogoCuentum> CatalogoCuenta { get; set; }
@@ -24,14 +25,17 @@ namespace Sistema_Contable.Models.DB
         public virtual DbSet<Clasificacion> Clasificacions { get; set; }
         public virtual DbSet<EstadosFinanciero> EstadosFinancieros { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<SaldoCuentaRegistro> SaldoCuentaRegistros { get; set; }
+        public virtual DbSet<TablaPrueba> TablaPruebas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<VcuentasContable> VcuentasContables { get; set; }
+        public virtual DbSet<VcuentaReporte> VcuentaReportes { get; set; }
+        public virtual DbSet<VlibroDiario> VlibroDiarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost; Database=SistemaContable; Trusted_Connection=True;");
             }
         }
@@ -39,6 +43,27 @@ namespace Sistema_Contable.Models.DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+
+            modelBuilder.Entity<ArboldeCuentum>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("ArboldeCuenta");
+
+                entity.Property(e => e.IdCuenta).HasColumnName("Id_Cuenta");
+
+                entity.Property(e => e.IdPadre).HasColumnName("ID_Padre");
+
+                entity.Property(e => e.Naturaleza)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.NombreCuenta)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
 
             modelBuilder.Entity<AsientoContable>(entity =>
             {
@@ -56,10 +81,6 @@ namespace Sistema_Contable.Models.DB
                 entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
 
                 entity.Property(e => e.IdUsuario).HasColumnName("ID_Usuario");
-
-                entity.Property(e => e.TotalDebe).HasColumnType("money");
-
-                entity.Property(e => e.TotalHaber).HasColumnType("money");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.AsientoContables)
@@ -102,6 +123,8 @@ namespace Sistema_Contable.Models.DB
                 entity.HasKey(e => e.IdCuenta)
                     .HasName("PK__Catalogo__820D611FF5112558");
 
+                entity.HasComment("0 = Agrupacion , 1 Detalle");
+
                 entity.Property(e => e.IdCuenta).HasColumnName("ID_Cuenta");
 
                 entity.Property(e => e.Descripcion).HasMaxLength(100);
@@ -109,6 +132,8 @@ namespace Sistema_Contable.Models.DB
                 entity.Property(e => e.FechaCreacion).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.Filtro).HasComment("0 = Agrupacion,1 = Detalle");
 
                 entity.Property(e => e.IdClasificacion).HasColumnName("ID_Clasificacion");
 
@@ -207,6 +232,31 @@ namespace Sistema_Contable.Models.DB
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<SaldoCuentaRegistro>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("SaldoCuentaRegistro");
+
+                entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
+
+                entity.Property(e => e.IdCuenta).HasColumnName("ID_Cuenta");
+
+                entity.Property(e => e.SaldoCuentaBase).HasColumnType("money");
+            });
+
+            modelBuilder.Entity<TablaPrueba>(entity =>
+            {
+                entity.ToTable("TablaPrueba");
+
+                entity.Property(e => e.Edad).HasDefaultValueSql("((10))");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsFixedLength(true);
+            });
+
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
@@ -267,11 +317,11 @@ namespace Sistema_Contable.Models.DB
                     .HasConstraintName("FK_Usuario_Roles");
             });
 
-            modelBuilder.Entity<VcuentasContable>(entity =>
+            modelBuilder.Entity<VcuentaReporte>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("VCuentasContable");
+                entity.ToView("VCuentaReporte");
 
                 entity.Property(e => e.Auxiliar)
                     .HasMaxLength(10)
@@ -281,9 +331,28 @@ namespace Sistema_Contable.Models.DB
 
                 entity.Property(e => e.IdPadre).HasColumnName("ID_Padre");
 
-                entity.Property(e => e.NombreCuentaC)
-                    .HasMaxLength(400)
-                    .IsUnicode(false);
+                entity.Property(e => e.NombreCuentaC).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<VlibroDiario>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VLibroDiario");
+
+                entity.Property(e => e.Debe).HasColumnType("money");
+
+                entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
+
+                entity.Property(e => e.Haber).HasColumnType("money");
+
+                entity.Property(e => e.IdAsiento).HasColumnName("ID_Asiento");
+
+                entity.Property(e => e.IdCuenta).HasColumnName("ID_Cuenta");
+
+                entity.Property(e => e.NombreCuenta)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             OnModelCreatingPartial(modelBuilder);
