@@ -207,7 +207,6 @@ C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\B
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.AssemblyInfoInputs.cache
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.AssemblyInfo.cs
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.csproj.CopyComplete
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.dll
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.pdb
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.genruntimeconfig.cache
@@ -220,3 +219,6 @@ C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\B
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\bin\Debug\netcoreapp3.1\Syncfusion.SfTreeView.WPF.dll
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\View\CuentaEdit.g.cs
 C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\View\CuentaEdit.baml
+C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\bin\Debug\netcoreapp3.1\Microsoft.Expression.Interactions.dll
+C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\bin\Debug\netcoreapp3.1\System.Windows.Interactivity.dll
+C:\Users\user\Desktop\Ingenieria de Sistemas\Segundo Año\Segundo Cuatrimestre\Bases de datos 1\Sistema_Contable\Sistema_Contable\Sistema_Contable\obj\Debug\netcoreapp3.1\Sistema_Contable.GeneratedMSBuildEditorConfig.editorconfig

@@ -10,6 +10,8 @@
     xmlns:local="clr-namespace:Sistema_Contable.View"
     xmlns:viewModles="clr-namespace:Sistema_Contable.ViewModels"
     
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    
     xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
     xmlns:Engine="clr-namespace:Syncfusion.UI.Xaml.TreeView.Engine;assembly=Syncfusion.SfTreeView.WPF"
     
@@ -25,15 +27,49 @@
     </Page.DataContext>
     
     <Page.Resources>
-        
-        <!--<CollectionViewSource x:Key="categoryViewSource" d:DesignSource="{d:DesignInstance {x:Type local2:VcuentaReporte}, CreateList=True}"/>
-        <CollectionViewSource x:Key="asientoViewSource"  d:DesignSource="{d:DesignInstance {x:Type local2:AsientoContable}, CreateList=True}"/>
-        <CollectionViewSource x:Key="filtrocuenta" d:DesignSource="{d:DesignInstance {x:Type local3:CuentaContable}, CreateList=True}"/>
-        <CollectionViewSource x:Key="AgregarcuentaViewSource" d:DesignSource="{d:DesignInstance {x:Type local3:AgregarCuenta}, CreateList=True}"/>-->
 
+        <!--<Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Height" Value="23"/>
+        </Style>
 
-        <!--<CollectionViewSource x:Key="categoryViewSource" d:DesignSource="{d:DesignInstance {x:Type local2:VcuentaReporte}, CreateList=True}"/>
-        <CollectionViewSource x:Key="libroDiarioViewSource" d:DesignSource="{d:DesignInstance {x:Type local2:VlibroDiario}, CreateList=True}"/>-->
+        <Style x:Key="CustTextBox" TargetType="{x:Type TextBox}" BasedOn="{x:Null}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>-->
+
+        <Style TargetType="TextBox" x:Key="TextboxRedondo">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="#000" BorderThickness="1.5" Background="#fff">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Blue" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style TargetType="{x:Type TabItem}" >
             <Setter Property="FontSize" Value="17"/>
@@ -76,11 +112,6 @@
             </Setter>
         </Style>
          
-        <!--<RoutedUICommand x:Key="AddCuentaCommand" Text="Agregar Cuenta"/>
-        <RoutedUICommand x:Key="EditarCuentaCommand" Text="Editar Cuenta"/>
-        <RoutedUICommand x:Key="DesactivarCuentaCommand" Text="Desactivar Cuenta"/>
-        <RoutedUICommand x:Key="MovimientosCuentaCommand" Text="Editar Cuenta"/>-->
-
         <Style x:Key="PruebaButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#373737" />
             <Setter Property="Foreground" Value="White" />
@@ -119,9 +150,7 @@
                 <PropertyGroupDescription PropertyName="IdAsiento"/>
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
-        
-        <!--<RoutedUICommand x:Key="EliminarMovimientoCommand"/>
-        <RoutedUICommand x:Key="AgregarMovimientoCommand"/>-->
+     
     </Page.Resources>
 
     <!--<Page.Triggers>
@@ -130,77 +159,164 @@
         </EventTrigger>
     </Page.Triggers>-->
     
-     <!--<Page.CommandBindings>
-        <CommandBinding Command="{StaticResource AgregarMovimientoCommand}" Executed="AgregarMovimientoComandhandler"/>
-        <CommandBinding Command="{StaticResource EliminarMovimientoCommand}" Executed="EliminarMovimientoCommandhandler"/>
-    </Page.CommandBindings>-->
-
-    <!--<Page.CommandBindings>
-        <CommandBinding Command="{StaticResource AddCuentaCommand}" Executed="AddCuentaCommandHandler"/>
-        <CommandBinding Command="{StaticResource EditarCuentaCommand}" Executed="EditarCuentaCommandHandler"/>
-    </Page.CommandBindings>-->
-
+   
     <Grid>
         <TabControl  Margin="5" BorderBrush="Transparent" Background="Transparent" >
 
             <TabItem Header="Catálogo de cuenta" >
-                <Grid >
+                <Grid>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="1" x:Name="MuestraCuenta" Visibility="{Binding Boton, NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Style="{StaticResource PruebaButton}" Content="Mostrar Catalogo" Height="40" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CommanCargarCuenta}"/>
-                    <mah:ProgressRing Grid.Row="1" Visibility="{Binding Progreso , Mode=TwoWay ,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" x:Name="Progreso" Foreground="Blue" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Grid x:Name="GridEdit" Grid.Row="0" Visibility="{Binding MuestraGridEdit}" Margin="10,10,10,0" HorizontalAlignment="Stretch">
 
-                    <DataGrid x:Name="MyGrid" Visibility="{Binding Tabla,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" ItemsSource="{Binding _listaCuenta}" CanUserAddRows="False" SelectionUnit="FullRow" SelectionMode="Single">
-                        
-                        <DataGrid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Editar Cuenta" Command="{Binding MyCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind = "Add" Width="25" Height="25" Foreground="Black"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Editar Cuenta" Command="{Binding MyCommand2}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
-                                    <MenuItem.Icon>
-                                        <materialDesign:PackIcon Kind = "Add" Width="25" Height="25" Foreground="Black"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                            </ContextMenu>
-                        </DataGrid.ContextMenu>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" DataContext="{Binding Cambio}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Nombre :" Grid.Column="0"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+                            <TextBox x:Name="addressTextBox" Text="{Binding Path=Nombre,Mode=TwoWay}" Grid.Column="1" Style="{StaticResource TextboxRedondo}"/>
 
-                        
-                        
-                    </DataGrid>
+                            <Label Content="Descripcion :" Grid.Column="2" HorizontalAlignment="Left" Margin="3,3,0,3" VerticalAlignment="Center"/>
+                            <TextBox x:Name="desTextBox" Text="{Binding Path=Descripcion,Mode=TwoWay}" Grid.Column="3" Style="{StaticResource TextboxRedondo}" />
 
+                            <Label Content="Estado :" Grid.Column="4" HorizontalAlignment="Left" Margin="3 3 0 0"/>
+                            <ComboBox Width="120" Grid.Column="5" FontSize="15" SelectedIndex="{Binding Path=Indice,Mode=TwoWay}" Margin="0 3 0 3" VerticalAlignment="Center">
+                                <ComboBoxItem Content="Inactiva" FontSize="15"/>
+                                <ComboBoxItem Content="Activa" FontSize="15" IsSelected="True"/>
+                            </ComboBox>
+                        </Grid>
+                        
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10 0 0 0" HorizontalAlignment="Right">
+                            <Button Margin="0 0 10 0" Width="50" Height="30" Command="{Binding CommandCancel}">
+                                <materialDesign:PackIcon Kind = "Close" Width="20" Height="20" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                            <Button Margin="0 0 10 0" Width="50" Height="30" Command="{Binding CommandOk}">
+                                <materialDesign:PackIcon Kind = "Check" Width="20" Height="20" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="GridAdd" Visibility="{Binding MuestraGridAdd}" Grid.Row="0"  Margin="10,10,10,0" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" DataContext="{Binding NuevaCuenta}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="ID Padre :" Grid.Row="1" Grid.Column="0"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+                            <Label Content="Fecha C. :" Grid.Row="2" Grid.Column="0"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+
+                            <TextBlock Text="{Binding Path=ID}" IsEnabled="True" Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <DatePicker Grid.Row="2" Text="{Binding Path=FechaModificacion,Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center"/>
+
+                            <Label Content="Nombre :" Grid.Row="1" Grid.Column="2"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+                            <Label Content="Estado :" Grid.Row="2" Grid.Column="2"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+
+                            <TextBox Text="{Binding Path=Nombre,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Style="{StaticResource TextboxRedondo}"/>
+                            
+                            <ComboBox Grid.Row="2" Grid.Column="3" FontSize="15" SelectedIndex="{Binding Path=Indice,Mode=TwoWay}" Margin="0 3 0 3" VerticalAlignment="Center">
+                                <ComboBoxItem Content="Inactiva" FontSize="15"/>
+                                <ComboBoxItem Content="Activa" FontSize="15" IsSelected="True"/>
+                            </ComboBox>
+
+                            <Label Content="Descripcion :" Grid.Row="1" Grid.Column="4"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+                            <Label Content="Saldo Inicia :" Grid.Row="2" Grid.Column="4"  Margin="3,3,0,3" VerticalAlignment="Center"/>
+
+                            <TextBox Text="{Binding Path=Descripcion,Mode=TwoWay}" Grid.Row="1" Grid.Column="5" Style="{StaticResource TextboxRedondo}"/>
+                            <TextBox Text="{Binding Path=Saldo,Mode=TwoWay}" Grid.Row="2" Grid.Column="5" Style="{StaticResource TextboxRedondo}"/>
+
+                        </Grid>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10 0 0 0" HorizontalAlignment="Right">
+                            <Button Margin="0 0 10 0" Width="50" Height="30" Command="{Binding CommandCancel}">
+                                <materialDesign:PackIcon Kind = "Close" Width="20" Height="20" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                            <Button Margin="0 0 10 0" Width="50" Height="30" Command="{Binding CommandOk}">
+                                <materialDesign:PackIcon Kind = "Check" Width="20" Height="20" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="1">
+                        <Button x:Name="MuestraCuenta" Visibility="{Binding Boton}" Style="{StaticResource PruebaButton}" Content="Mostrar Catalogo" Height="40" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CommanCargarCuenta}"/>
+                        <mah:ProgressRing Visibility="{Binding Progreso}" x:Name="Progreso" Foreground="Blue" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                        <DataGrid x:Name="MyGrid" Visibility="{Binding Tabla}"  ItemsSource="{Binding ListaCuenta,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MahApps.Styles.DataGrid}" Margin = "0 10 0 0" SelectionUnit = "FullRow" SelectionMode = "Single" AutoGenerateColumns = "False" CanUserAddRows = "false" IsEnabled = "True" IsReadOnly="True" EnableRowVirtualization = "True" Width = "auto" RowDetailsVisibilityMode = "VisibleWhenSelected" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name = "ID_CuentaColumn" Binding = "{Binding IdCuenta}" Header = "ID Cuenta" Width = "SizeToHeader"/>
+                                <DataGridTextColumn x:Name = "ID_PadreColumn" Binding = "{Binding IdPadre}" Header = "ID Cuenta Padre" Width = "SizeToHeader" />
+                                <DataGridTextColumn x:Name = "NombreCuentaColumn" Binding = "{Binding NombreCuentaC}" Header = "Nombre" Width = "400" />
+                                <DataGridTextColumn x:Name = "NivelColumn" Binding = "{Binding NivelC}" Header = "Nivel" Width = "SizeToHeader" />
+                                <DataGridTextColumn x:Name = "AuxiliarColumn" Binding = "{Binding Auxiliar}" Header = "Codigo Cuenta" Width = "SizeToHeader" />
+                                <DataGridCheckBoxColumn x:Name="EstadoColumn" Binding="{Binding Estado}" Header="Estado" Width="SizeToHeader"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Editar Cuenta" Command="{Binding CommandEdit}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                                        <MenuItem.Icon>
+                                            <materialDesign:PackIcon Kind = "EditOutline" Width="25" Height="25" Foreground="Black"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Agregar Cuenta" Command="{Binding CommanAdd}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}">
+                                        <MenuItem.Icon>
+                                            <materialDesign:PackIcon Kind = "Add" Width="25" Height="25" Foreground="Black"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                    </Grid>
 
 
                 </Grid>
-
             </TabItem>
 
             <TabItem Header="Comprobantes Contables">
-                
-                 <Grid x:Name="ViewComprobante" Margin="0 10 0 0"  Background="White">
-
+                <Grid x:Name="ViewComprobante" Margin="0 10 0 0"  Background="White">
                     <Grid x:Name="Gridprincipal" Visibility="Visible">
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="AUTO"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-
-
                         <Grid x:Name="ComprobanteA" Grid.Row="0"   >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-
                             <Button x:Name="CambioA" Width="220" Height="50" HorizontalAlignment="Right"  Grid.Column="1" Style="{StaticResource PruebaButton}" Content="Nuevo Comprobante" Click="Comprobantes_Click" Margin="0 5 10 0" />
                         </Grid>
-
                         <Grid Grid.Row="1">
                             <syncfusion:SfDataGrid x:Name="AsientoContableDataGrid"   VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"   SelectionMode = "None"  IsEnabled = "True"  Margin="10 20 10 20" ColumnSizer="Star"  AllowResizingColumns="True" AllowFiltering="True" >
                                 <syncfusion:SfDataGrid.Columns>

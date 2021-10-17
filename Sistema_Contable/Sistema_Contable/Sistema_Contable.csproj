@@ -16,6 +16,7 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="19.2.0.62" />
     <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="19.2.0.62" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
   </ItemGroup>
 
 </Project>

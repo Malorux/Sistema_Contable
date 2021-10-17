@@ -30,7 +30,6 @@ namespace Sistema_Contable.Models
                 if (window.GetType() == typeof(MainWindow))
                 {
                     (window as MainWindow).MainWindowFrame.Navigate(Pagina);
-
                 }
 
             }

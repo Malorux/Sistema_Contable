@@ -20,6 +20,7 @@ using Syncfusion.UI.Xaml.Grid;
 using Syncfusion.Data;
 using Syncfusion.UI.Xaml.Grid.Helpers;
 using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace Sistema_Contable.View
 {
@@ -483,6 +484,11 @@ namespace Sistema_Contable.View
             //Total_Haber.Text = null;
         }
 
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Regex regex = new Regex();
+            //e.Handled = regex.IsMatch(e.Text);
+        }
     }
 
 }
