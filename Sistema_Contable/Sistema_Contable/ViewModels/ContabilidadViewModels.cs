@@ -480,31 +480,26 @@ namespace Sistema_Contable.ViewModels
                 (
                     () =>
                     {
-<<<<<<< HEAD
-                        ListaCuenta = new ObservableCollection<VcuentaReporte>(db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList());
-=======
+
                         using (var db = new SistemaContableContext())
                         {
-                            ListaCuenta = new ObservableCollection<VcuentaReporte>
-                           (
-                                db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList()
-                           );
+                            ListaCuenta = new ObservableCollection<VcuentaReporte>(db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList());
 
                             recargarmovimiento();
 
                             ListaCuentaContable = new ObservableCollection<CuentaContable>
-                            (
-                               db.VcuentaReportes.Where(x => x.Filtro.Value).OrderBy(x => x.IdCuenta).Select
-                               (j =>
-                                  new CuentaContable
-                                  {
-                                      Id_Cuenta = (int)j.IdCuenta,
-                                      Nombre_CuentaC = j.NombreCuentaC
-                                  }
-                               )
-                            );
+                                (
+                                   db.VcuentaReportes.Where(x => x.Filtro.Value).OrderBy(x => x.IdCuenta).Select
+                                   (j =>
+                                      new CuentaContable
+                                      {
+                                          Id_Cuenta = (int)j.IdCuenta,
+                                          Nombre_CuentaC = j.NombreCuentaC
+                                      }
+                                   )
+                                );
+
                         }
->>>>>>> origin
                     }
                 );
             Progreso = Visibility.Collapsed;
