@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sistema_Contable.Models
 {
-    class CuentaContable
+    public class CuentaContable
     {
         public int Id_Cuenta { get; set; }
         public string Nombre_CuentaC { get; set; }
