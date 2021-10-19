@@ -53,7 +53,7 @@ namespace Sistema_Contable.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Sistema_Contable;component/view/cuentaedit.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Sistema_Contable;V1.0.0.0;component/view/cuentaedit.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\CuentaEdit.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

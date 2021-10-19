@@ -245,11 +245,7 @@ namespace Sistema_Contable.ViewModels
                 (
                     () =>
                     {
-                        ListaCuenta = new ObservableCollection<VcuentaReporte>
-                        (
-                            db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList()
-                        );
-
+                        ListaCuenta = new ObservableCollection<VcuentaReporte>(db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList());
                     }
                 );
         }
@@ -257,23 +253,16 @@ namespace Sistema_Contable.ViewModels
         {
             Boton = Visibility.Collapsed;
             Progreso = Visibility.Visible;
-
             await Task.Run
                 (
                     () =>
                     {
-                        ListaCuenta = new ObservableCollection<VcuentaReporte>
-                        (
-                            db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList()
-                        );
-
+                        ListaCuenta = new ObservableCollection<VcuentaReporte>(db.VcuentaReportes.OrderBy(w => w.IdCuenta).ToList());
                     }
                 );
-            Task.WaitAll();
             Progreso = Visibility.Collapsed;
             Tabla = Visibility.Visible;
         }
-
     }
 
 
@@ -338,7 +327,6 @@ namespace Sistema_Contable.ViewModels
             }
         }
     }
-
     public class AddCuenta : INotifyPropertyChanged
     {
         #region PropertyChanged
@@ -353,6 +341,9 @@ namespace Sistema_Contable.ViewModels
         public AddCuenta(VcuentaReporte rep)
         {
             Saldo = "0";
+            Descripcion = "";
+            Nombre = "";
+            FechaModificacion = "";
             ID = (int)rep.IdCuenta;
             _SaldoInicial = 0;
             

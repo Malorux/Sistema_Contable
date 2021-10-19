@@ -8,7 +8,6 @@
         
         xmlns:viewmodels91="clr-namespace:Sistema_Contable.ViewModels"
         
-        
         mc:Ignorable="d"
         FontSize="15"
         WindowStyle="None"
@@ -98,7 +97,6 @@
                                 <Border.ToolTip>
                                     <TextBlock Text="{Binding MenuName}" FontSize="15" Foreground="Black" Background="Transparent"/>
                                 </Border.ToolTip>
-
                                 <!--Agregar ícono y texto en nuestro botón-->
                                 <Grid Margin="5,0,0,0" >
 
@@ -167,10 +165,7 @@
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
                             <!--<Border Background="{TemplateBinding Background}">-->
                             <Border Background="{TemplateBinding Background}">
-                                <RadioButton x:Name="SMenuButton" GroupName="SubMenu" Style="{StaticResource SubMenuButtonStyle}"
-                                    Content="{Binding MenuName, FallbackValue=MenuName, TargetNullValue=MenuName}"
-                                    Command="{Binding M_Command}"
-                                />
+                                <RadioButton x:Name="SMenuButton" GroupName="SubMenu" Style="{StaticResource SubMenuButtonStyle}" Content="{Binding MenuName, FallbackValue=MenuName, TargetNullValue=MenuName}" Command="{Binding M_Command}"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <!--Para seleccionar ListboxItem cuando nuestro botón está en estado marcado-->
@@ -262,7 +257,6 @@
         </Grid.ColumnDefinitions>
 
         <!--Your choice if you want blur effect or not..-->
-
         <Grid x:Name="GridAnimated1" Width="200" Grid.Column="0" Background="#f3f3f3" >
           
             <Grid.RowDefinitions>
@@ -278,28 +272,17 @@
                     <materialDesign:PackIcon  Kind="Menu" Width="25" Height="25"/>
                 </Button>
             </Grid>
-        
+
             <StackPanel Grid.Row="1" Background="Transparent">
-               
                 <!--Menu Buttons-->
-                <ListBox 
-                SelectionMode="Single" 
-                Margin="0 5 0 0" 
-                SelectedIndex="-1" 
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ItemsSource="{Binding MenuItems}"
-                BorderThickness="0"
-                Background="Transparent"
-                Foreground="#292934"
+                <ListBox SelectionMode="Single" Margin="0 5 0 0" SelectedIndex="-1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ItemsSource="{Binding MenuItems}" BorderThickness="0" Background="Transparent" Foreground="#292934"
                 >
+                    
                     <ListBox.DataContext>
                         <viewmodels91:MenuViewModels/>
                     </ListBox.DataContext>
-
                 </ListBox>
-
-
             </StackPanel>
         </Grid>
 
@@ -313,33 +296,6 @@
             </Grid.RowDefinitions>
 
             <Grid  Grid.Row="0" Background="#f3f3f3">
-
-                <!--Region User Name-->
-                <!--<Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="165*"/>
-                        <ColumnDefinition Width="41*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border CornerRadius="15" BorderThickness="3" BorderBrush="LightGray" Height="30" Background="White" Margin="580,5,87,5" Grid.ColumnSpan="2" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="52"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" Margin="25,0,0,0">
-                                <TextBlock Text="Michaell Joel" TextAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="Gray" Margin="-8,1,-8,-3" Height="26" />
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Border CornerRadius="30" BorderThickness="1" BorderBrush="CadetBlue" Background="CadetBlue" Margin="16,1,14,1">
-                                    <TextBlock TextAlignment="Center" Text="M" VerticalAlignment="Center" FontSize="15" Foreground="White" FontWeight="Bold"/>
-                                </Border>
-
-                            </Grid>
-                        </Grid>
-                    </Border>
-                </Grid>-->
-
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource WindowButtonStyle}" Background="Yellow" Margin="0 0 5 0" Click="Button_Click"/>
                     <Button Style="{StaticResource WindowButtonStyle}" Background="Green" Margin="0 0 5 0" Click="Button_Click_1"/>
@@ -349,10 +305,7 @@
 
             <!--marco para que las páginas naveguen cuando se selecciona un menú-->
             <Border Grid.Row="1" CornerRadius="10 0 0 0" Background="#f9f9f9" BorderBrush="Gray" BorderThickness="0.5" >
-                <Frame x:Name="MainWindowFrame"  Grid.Column="1" NavigationUIVisibility="Hidden" Background="Transparent" Margin="5 15 0 5 ">
-
-                </Frame>
-
+                <Frame x:Name="MainWindowFrame"  Grid.Column="1" NavigationUIVisibility="Hidden" Background="Transparent" Margin="5 15 0 5 "/>
             </Border>
 
         </Grid>
